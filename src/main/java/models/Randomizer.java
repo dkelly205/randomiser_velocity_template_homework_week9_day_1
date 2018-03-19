@@ -8,9 +8,19 @@ public class Randomizer {
     private ArrayList<String> names;
 
     public Randomizer() {
+        this.names = new ArrayList<>();
     }
 
-    public String getName(){
+
+    public void addName(String name){
+        names.add(name);
+    }
+
+    public ArrayList<String> getNames() {
+        return names;
+    }
+
+    public String getWinner(){
         Collections.shuffle(names);
         return names.get(0);
     }

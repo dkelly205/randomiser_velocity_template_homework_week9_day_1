@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="spark_velocity_randomiser_homework_week9_day1" target="1.5" />
+      <module name="spark_velocity_randomiser_homework_week9_day1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
