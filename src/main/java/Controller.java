@@ -4,6 +4,7 @@ import spark.Spark;
 import spark.template.velocity.VelocityTemplateEngine;
 
 import java.util.HashMap;
+import java.util.List;
 
 import static spark.Spark.get;
 import static spark.SparkBase.staticFileLocation;
@@ -12,20 +13,17 @@ public class Controller {
 
     public static void main(String[] args) {
         VelocityTemplateEngine velocityTemplateEngine = new VelocityTemplateEngine();
-        VelocityTemplateEngine velocityTemplateEngine2 = new VelocityTemplateEngine();
 
         staticFileLocation("/public");
 
 
-        get("/one", (req, res)->{
-            Randomizer randomizer = new Randomizer();
-            randomizer.addName("Neil");
-            randomizer.addName("Rick");
-            randomizer.addName("Mike");
-            randomizer.addName("Vivien");
+        get("/names/:number", (req, res)->{
+
+            int amount = Integer.parseInt(req.params(":number"));
+            List<String> names = Randomizer.getNames(amount);
 
             HashMap<String, Object> model = new HashMap<>();
-            model.put("result", randomizer.getWinner());
+            model.put("names", names);
             model.put("template", "one.vtl");
 
             return new ModelAndView(model, "layout.vtl");
@@ -35,23 +33,6 @@ public class Controller {
         Spark.exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
         });
-
-
-        get("/two", (req, res)->{
-            Randomizer randomizer = new Randomizer();
-            randomizer.addName("Neil");
-            randomizer.addName("Rick");
-            randomizer.addName("Mike");
-            randomizer.addName("Vivien");
-
-            HashMap<String, Object> model = new HashMap<>();
-            model.put("result", randomizer.getPairOfNames());
-            model.put("template", "two.vtl");
-
-            return new ModelAndView(model, "layout.vtl");
-
-        }, velocityTemplateEngine2);
-
 
     }
 }

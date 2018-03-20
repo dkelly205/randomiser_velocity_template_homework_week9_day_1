@@ -1,4 +1,8 @@
 h1{
 color: DodgerBlue;
 text-align: center;
+border: 1px solid DodgerBlue;
+padding: 10px;
+margin-left:70px;
+margin-right:70px;
 }

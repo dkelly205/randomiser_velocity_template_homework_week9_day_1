@@ -1,35 +1,25 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 
 public class Randomizer {
 
-    private ArrayList<String> names;
+    public static List<String> getNames(int amount){
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Victor");
+        names.add("Jean");
+        names.add("Chris");
+        names.add("Ellie");
 
-    public Randomizer() {
-        this.names = new ArrayList<>();
-    }
-
-
-    public void addName(String name){
-        names.add(name);
-    }
-
-    public ArrayList<String> getNames() {
-        return names;
-    }
-
-    public String getWinner(){
         Collections.shuffle(names);
-        return names.get(0);
+
+        if(amount > names.size() || amount < 0){
+            return names;
+        }else {
+            return names.subList(0, amount);
+        }
     }
 
-    public ArrayList<String> getPairOfNames(){
-        ArrayList<String> pair = new ArrayList<String>();
-        Collections.shuffle(names);
-        pair.add(names.get(0));
-        pair.add(names.get(1));
-        return pair;
-    }
 }
